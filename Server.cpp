@@ -12,7 +12,7 @@ using namespace std;
  */
 string ReadMessage(boost::asio::ip::tcp::socket & socket) {
     boost::asio::streambuf buf; // Buffer de entrada de mensajes
-    boost::asio::read_until( socket, buf, "\n" ); //  Indica que lea mensaje del socket desde el buffer hasta el delimitador \n
+    boost::asio::read_until( socket, buf, "\n" ); //  Indica que lea mensaje del socket desde el buffer hasta el delimitador
     string data = boost::asio::buffer_cast<const char*>(buf.data()); // Hace cast del buffer de entrada a un char pointer (caracteres legibles)
     return data; // Retorna el mensaje recibido
 }
