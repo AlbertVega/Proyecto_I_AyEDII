@@ -64,7 +64,7 @@ int main() {
 
     //escritura del mensaje a enviar al server*/
 
-    boost::asio::write(socket, boost::asio::buffer(, error); // Escribe mensaje al servidor
+    boost::asio::write(socket, boost::asio::buffer(data), error); // Escribe mensaje al servidor
     
     if(!error) {
         cout << "Mensaje enviado" << endl;
