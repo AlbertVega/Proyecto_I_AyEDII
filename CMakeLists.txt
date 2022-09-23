@@ -5,5 +5,3 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Server Server.cpp)
 add_executable(Client Client.cpp)
-
-HPX_WITH_FETCH_ASIO=ON.
