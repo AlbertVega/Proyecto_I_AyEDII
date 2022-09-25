@@ -1,13 +1,29 @@
 #include <iostream>
 #include <boost/asio.hpp>
-#include <opencv2/opencv.hpp>
+#include <opencv4/opencv2/opencv.hpp>
+
 using namespace cv;
 using namespace std;
 
 int main() {
-    cv::Mat image = imread("/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/Prueba.jpeg", IMREAD_GRAYSCALE);
+    /*
+     * Image management
+     */
+    cv::Mat image = imread("/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/Prueba.jpeg", IMREAD_COLOR);
+    if (image.empty()) { //Verify if the image has been readed correctly
+        cout << "Image File "
+             << "Not Found" << endl;
+
+        // wait for any key press
+        cin.get();
+        return -1;
+    }
     imshow("ImageWindow", image);
-    
+    waitKey(0);
+
+    /*
+     * Socket
+     */
     boost::asio::io_service io_service; // Servicio de input/output
     boost::asio::ip::tcp::socket socket(io_service); // Declaracion de socket para conexiones
     boost::system::error_code error; // Variable para codigo de error especifico de Boost
