@@ -831,7 +831,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "sockets"
+			"value" : "ImageProcessing"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1112,6 +1112,66 @@
 			],
 			"type" : "BOOL",
 			"value" : "FALSE"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenCV",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding OpenCV"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[/usr/local][v4.6.0()]"
+		},
+		{
+			"name" : "ImageProcessing_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/cmake-build-debug"
+		},
+		{
+			"name" : "ImageProcessing_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "ImageProcessing_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/albert/Documentos/GitHub/Proyecto_I_AyEDII"
+		},
+		{
+			"name" : "OpenCV_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for OpenCV."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/local/lib/cmake/opencv4"
 		},
 		{
 			"name" : "sockets_BINARY_DIR",

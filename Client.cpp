@@ -1,8 +1,13 @@
 #include <iostream>
 #include <boost/asio.hpp>
-
+#include <opencv2/opencv.hpp>
+using namespace cv;
 using namespace std;
+
 int main() {
+    cv::Mat image = imread("/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/Prueba.jpeg", IMREAD_GRAYSCALE);
+    imshow("ImageWindow", image);
+    
     boost::asio::io_service io_service; // Servicio de input/output
     boost::asio::ip::tcp::socket socket(io_service); // Declaracion de socket para conexiones
     boost::system::error_code error; // Variable para codigo de error especifico de Boost
