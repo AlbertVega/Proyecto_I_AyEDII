@@ -1,7 +1,9 @@
 #include <iostream>
-#include <boost/asio.hpp> // Incluir libreria de Boost Asio
+#include <boost/asio.hpp>
+#include <opencv4/opencv2/opencv.hpp>
 
 using namespace std;
+using namespace cv;
 
 /**
  *
@@ -16,7 +18,6 @@ string ReadMessage(boost::asio::ip::tcp::socket & socket) {
     string data = boost::asio::buffer_cast<const char*>(buf.data()); // Hace cast del buffer de entrada a un char pointer (caracteres legibles)
     return data; // Retorna el mensaje recibido
 }
-
 /**
  *
  * Funcion que envia mensaje al cliente
