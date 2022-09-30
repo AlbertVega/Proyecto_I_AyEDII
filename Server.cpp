@@ -18,57 +18,70 @@
 #include <vector>
 using namespace std;
 using namespace cv;
-
+/**
+ * class ImageProcessing
+ */
 class ImageProcessing{
     private: //atributos
         int width;
         int height;
         int delta_bright;
-        int ImageSource;
-        int ImageDest;
         int gamma;
         Mat source;
         Mat destiny;
     public:
-        ImageProcessing(int, int, int, int, int, int, Mat, Mat); //constructor
+        ImageProcessing(int, int, int, int, Mat, Mat); //constructor
         int glaussian_blur();
         int gray_scale();
         int bright_control();
         int gamma_correction();
-
 };
 //constructor
-ImageProcessing::ImageProcessing(int _witdh, int _height, int _delta_bright, int _ImageSource, int _ImageDest, int _gamma, Mat _source, Mat _destiny) {
+ImageProcessing::ImageProcessing(int _witdh, int _height, int _delta_bright, int _gamma, Mat _source, Mat _destiny) {
     width = _witdh;
     height = _height;
     delta_bright = _delta_bright;
-    ImageSource = _ImageSource;
-    ImageDest = _ImageDest;
     gamma = _gamma;
     source = _source;
     destiny = _destiny;
 }
-
 int ImageProcessing::glaussian_blur() {
     GaussianBlur(source, destiny , Size(3, 3), 0);
-    return 0;
+    if (!source.data || source.empty()){
+        return -1;
+    }else{
+        return 0;
+    }
 }
-
 int ImageProcessing::gray_scale() {
     cvtColor(source, destiny, COLOR_BGR2GRAY);
-    return 0;
+    if (!source.data || source.empty()){
+        return -1;
+    }else{
+        return 0;
+    }
 }
 int ImageProcessing::bright_control() {
     source.convertTo(destiny, -1, 1, delta_bright);
+    if (!source.data || source.empty()){
+        return -1;
+    }else{
+        return 0;
+    }
 }
 int ImageProcessing::gamma_correction() {
-    float invGamma = 1 / gamma;
-    Mat table(1, 256, CV_8U);
-    uchar *p = table.ptr();
-    for (int i = 0; i < 256; ++i) {
-        p[i] = (uchar) (pow(i / 255.0, invGamma) * 255);
+    if (!source.data || source.empty()){
+        return -1;
+    }else{
+        float invGamma = 1 / gamma;
+        Mat table(1, 256, CV_8U);
+        uchar *p = table.ptr();
+        for (int i = 0; i < 256; ++i) {
+            p[i] = (uchar) (pow(i / 255.0, invGamma) * 255);
+        }
+        LUT(source, table, destiny);
+        return 0;
     }
-    LUT(source, table, destiny);
 }
 
 /**

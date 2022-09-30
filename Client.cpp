@@ -116,19 +116,12 @@ int divideImage(const cv::Mat& img, const int blockWidth, std::vector<cv::Mat>& 
     int x0 = 0;
     while (x0 < imgWidth)
     {
-        // compute the block height
-
-        // compute the block witdh
         bwSize = ((x0 + blockWidth) > imgWidth) * (blockWidth - (x0 + blockWidth - imgWidth)) + ((x0 + blockWidth) <= imgWidth) * blockWidth;
 
-        // crop block
         blocks.push_back(img(cv::Rect(x0, y0, bwSize, bhSize)).clone());
 
-        // update x-coordinate
         x0 = x0 + blockWidth;
 
-        // update y-coordinate
-        //y0 = y0 + blockHeight;
     }
     return EXIT_SUCCESS;
 }
@@ -181,12 +174,16 @@ int main() {
     socket.connect(boost::asio::ip::tcp::endpoint( boost::asio::ip::address::from_string("127.0.0.1"), 1234));
     cout << "Conectado al servidor" << endl;
     string size = to_string(blocks.size());
-
+    /*
+     * receive the size of vector blocks
+     */
     SendMessage(socket, size);
     string receivedMessage = ReadMessage(socket);
     receivedMessage.pop_back();
     cout << "Server dice que: "<<receivedMessage<<endl;
-
+    /*
+     * receive the image and add it to the Mat vector
+     */
     for (int i = 0; i < blocks.size() ; i++){
         cv::Mat TEMP = blocks[i];
         std::string serialized = save(TEMP);
