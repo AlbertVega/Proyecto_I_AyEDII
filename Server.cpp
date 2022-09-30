@@ -19,14 +19,65 @@
 using namespace std;
 using namespace cv;
 
-/*
- * serialization
+class ImageProcessing{
+    private: //atributos
+        int width;
+        int height;
+        int delta_bright;
+        int ImageSource;
+        int ImageDest;
+        int gamma;
+        Mat source;
+        Mat destiny;
+    public:
+        ImageProcessing(int, int, int, int, int, int, Mat, Mat); //constructor
+        int glaussian_blur();
+        int gray_scale();
+        int bright_control();
+        int gamma_correction();
+
+};
+//constructor
+ImageProcessing::ImageProcessing(int _witdh, int _height, int _delta_bright, int _ImageSource, int _ImageDest, int _gamma, Mat _source, Mat _destiny) {
+    width = _witdh;
+    height = _height;
+    delta_bright = _delta_bright;
+    ImageSource = _ImageSource;
+    ImageDest = _ImageDest;
+    gamma = _gamma;
+    source = _source;
+    destiny = _destiny;
+}
+
+int ImageProcessing::glaussian_blur() {
+    GaussianBlur(source, destiny , Size(3, 3), 0);
+    return 0;
+}
+
+int ImageProcessing::gray_scale() {
+    cvtColor(source, destiny, COLOR_BGR2GRAY);
+    return 0;
+}
+int ImageProcessing::bright_control() {
+    source.convertTo(destiny, -1, 1, delta_bright);
+}
+int ImageProcessing::gamma_correction() {
+    float invGamma = 1 / gamma;
+    Mat table(1, 256, CV_8U);
+    uchar *p = table.ptr();
+    for (int i = 0; i < 256; ++i) {
+        p[i] = (uchar) (pow(i / 255.0, invGamma) * 255);
+    }
+    LUT(source, table, destiny);
+}
+
+/**
+ * function that serialize the image, convert the Mat image to serialized string and viceversa
  */
 BOOST_SERIALIZATION_SPLIT_FREE( cv::Mat )
 
 namespace boost {
     namespace serialization {
-
         template <class Archive>
         void save( Archive & ar, const cv::Mat & m, const unsigned int version )
         {
@@ -42,8 +93,6 @@ namespace boost {
             for ( size_t i = 0; i < dataSize; ++i )
                 ar & m.data[ i ];
         }
-
-
         template <class Archive>
         void load( Archive & ar, cv::Mat& m, const unsigned int version )
         {
@@ -60,10 +109,13 @@ namespace boost {
             for (size_t i = 0; i < dataSize; ++i)
                 ar & m.data[ i ];
         }
-
     }
 }
-
+/**
+ * function that convert the Mat image to serialized string
+ * @param mat
+ * @return
+ */
 std::string save( const cv::Mat & mat )
 {
     std::ostringstream oss;
@@ -73,6 +125,11 @@ std::string save( const cv::Mat & mat )
     return oss.str();
 }
 
+/**
+ * function that convert serialized string to Mat image
+ * @param mat
+ * @param data_str
+ */
 void load( cv::Mat & mat, const char * data_str )
 {
     std::stringstream ss;
@@ -83,42 +140,33 @@ void load( cv::Mat & mat, const char * data_str )
 }
 
 /**
- *
- * Funcion que lee mensaje enviado por cliente
- *
+ * function that read the input messages
  * @param socket
  * @return
  */
 string ReadMessage(boost::asio::ip::tcp::socket & socket) {
-    boost::asio::streambuf buf; // Buffer de entrada de mensajes
-    boost::asio::read_until( socket, buf, "\n" ); //  Indica que lea mensaje del socket desde el buffer hasta el delimitador \n
-    string data = boost::asio::buffer_cast<const char*>(buf.data()); // Hace cast del buffer de entrada a un char pointer (caracteres legibles)
-    return data; // Retorna el mensaje recibido
+    boost::asio::streambuf buf;
+    boost::asio::read_until( socket, buf, "\n" );
+    string data = boost::asio::buffer_cast<const char*>(buf.data());
+    return data;
 }
 /**
- *
- * Funcion que envia mensaje al cliente
- *
+ * function that send output messages
  * @param socket
  * @param message
  */
 void SendMessage(boost::asio::ip::tcp::socket & socket, string message) {
-    string msg = message + "\n"; // Declara variable string con un delimitador linea siguiente
-    boost::asio::write( socket, boost::asio::buffer(msg)); // Envia mensaje a cliente mediante buffer
+    string msg = message + "\n";
+    boost::asio::write( socket, boost::asio::buffer(msg));
 }
 
-Stitcher::Mode mode = Stitcher::PANORAMA;
-
-
 int main() {
-    boost::asio::io_service io_service; // Servicio de input/output
-    boost::asio::ip::tcp::acceptor acceptor_(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),
-                                                                                        1234));// Acepta de manera asincrona conexiones en puerto 1234
-    boost::asio::ip::tcp::socket socket_(io_service); // Declaracion de socket para conexiones
-    boost::system::error_code error;
+    boost::asio::io_service io_service; //input/output service
+    boost::asio::ip::tcp::acceptor acceptor_(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),1234));
+    boost::asio::ip::tcp::socket socket_(io_service); //declaration of socket
 
     cout << "Servidor iniciado" << endl;
-    acceptor_.accept(socket_); // Acepta al socket del cliente que pida conectarse
+    acceptor_.accept(socket_);
     cout << "Cliente conectado" << endl;
 
     string sizeMessage = ReadMessage(socket_);
@@ -134,19 +182,15 @@ int main() {
         message.pop_back();
         Mat result;
         load(result, message.c_str());
-        //imshow("prueba", result);
-        //waitKey(0);
         blocks.push_back(result);
     }
-    cout<<"Hola!";
     Mat Result;
-
     hconcat(blocks, Result);
     imshow("Result window", Result);
     waitKey(0);
 
-    /*
-     * REBUILD
+    /**
+     * create directory to see the result blocks of image
      */
     cv::utils::fs::createDirectory("Result");
     for (int j = 0; j < blocks.size(); j++)

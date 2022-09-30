@@ -17,8 +17,8 @@
 
 using namespace cv;
 using namespace std;
-/*
- * serialization
+/**
+ * function that serialize the image, convert the Mat image to serialized string and viceversa
  */
 BOOST_SERIALIZATION_SPLIT_FREE( cv::Mat )
 
@@ -60,7 +60,11 @@ namespace boost {
         }
     }
 }
-
+/**
+ * function that convert the Mat image to serialized string
+ * @param mat
+ * @return
+ */
 std::string save( const cv::Mat & mat )
 {
     std::ostringstream oss;
@@ -69,7 +73,11 @@ std::string save( const cv::Mat & mat )
 
     return oss.str();
 }
-
+/**
+ * function that convert serialized string to Mat image
+ * @param mat
+ * @param data_str
+ */
 void load( cv::Mat & mat, const char * data_str )
 {
     std::stringstream ss;
@@ -79,8 +87,12 @@ void load( cv::Mat & mat, const char * data_str )
     tia >> mat;
 }
 
-/*
- * image divider
+/**
+ * function that divide the Mat image in several Mat objects
+ * @param img
+ * @param blockWidth
+ * @param blocks
+ * @return
  */
 int divideImage(const cv::Mat& img, const int blockWidth, std::vector<cv::Mat>& blocks)
 {
@@ -120,7 +132,11 @@ int divideImage(const cv::Mat& img, const int blockWidth, std::vector<cv::Mat>& 
     }
     return EXIT_SUCCESS;
 }
-
+/**
+ * function that read the input messages
+ * @param socket
+ * @return
+ */
 string ReadMessage(boost::asio::ip::tcp::socket & socket) {
     boost::asio::streambuf buf; // Buffer de entrada de mensajes
     boost::asio::read_until( socket, buf, "\n"); //  Indica que lea mensaje del socket desde el buffer hasta el delimitador \n
@@ -128,9 +144,7 @@ string ReadMessage(boost::asio::ip::tcp::socket & socket) {
     return data; // Retorna el mensaje recibido
 }
 /**
- *
- * Funcion que envia mensaje al cliente
- *
+ * function that send output messages
  * @param socket
  * @param message
  */
@@ -150,32 +164,19 @@ int main() {
         cin.get(); // wait for any key press
         return -1;
     }
-    //imshow("ImageWindow", image);
-    //waitKey(0);
 
     /*
      * Divide the image
      */
-    // init vars
-    const int blockw = 128;
-    std::vector<cv::Mat> blocks;
-    int divideStatus = divideImage(image, blockw, blocks);
-    // debug: save blocks
-    /*
-    cv::utils::fs::createDirectory("blocksFolder");
-    for (int j = 0; j < blocks.size(); j++)
-    {
-        std::string blockId = std::to_string(j);
-        std::string blockImgName = "blocksFolder/block#" + blockId + ".jpeg";
-        imwrite(blockImgName, blocks[j]);
-    }*/
+    const int blockw = 50; //size of the blocks image that will be generated
+    std::vector<cv::Mat> blocks; //vector that contains the blocks of image
+    int divideStatus = divideImage(image, blockw, blocks); //divide image
 
     /*
      * Socket
      */
-    boost::asio::io_service io_service; // Servicio de input/output
-    boost::asio::ip::tcp::socket socket(io_service); // Declaracion de socket para conexiones
-    boost::system::error_code error; // Variable para codigo de error especifico de Boost
+    boost::asio::io_service io_service; //input/output service
+    boost::asio::ip::tcp::socket socket(io_service); //declaration of sockets for conections
 
     socket.connect(boost::asio::ip::tcp::endpoint( boost::asio::ip::address::from_string("127.0.0.1"), 1234));
     cout << "Conectado al servidor" << endl;
@@ -189,7 +190,7 @@ int main() {
     for (int i = 0; i < blocks.size() ; i++){
         cv::Mat TEMP = blocks[i];
         std::string serialized = save(TEMP);
-        SendMessage(socket, serialized); // Escribe mensaje al servidor
+        SendMessage(socket, serialized);
         string receivedStatus = ReadMessage(socket);
         receivedMessage.pop_back();
         cout << "Server dice: "<<receivedStatus<<endl;
