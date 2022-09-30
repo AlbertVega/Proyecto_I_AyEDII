@@ -3,10 +3,6 @@
 #include <boost/asio.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/utils/filesystem.hpp>
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/stitching.hpp"
-
-
 
 #include <opencv2/core.hpp>
 #include <boost/serialization/split_free.hpp>
@@ -14,7 +10,9 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 
-
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/stitching.hpp"
 
 #include <string>
 #include <vector>
@@ -63,8 +61,8 @@ namespace boost {
                 ar & m.data[ i ];
         }
 
-    } // namespace serialization
-} // namespace boost
+    }
+}
 
 std::string save( const cv::Mat & mat )
 {
@@ -109,6 +107,9 @@ void SendMessage(boost::asio::ip::tcp::socket & socket, string message) {
     boost::asio::write( socket, boost::asio::buffer(msg)); // Envia mensaje a cliente mediante buffer
 }
 
+Stitcher::Mode mode = Stitcher::PANORAMA;
+
+
 int main() {
     boost::asio::io_service io_service; // Servicio de input/output
     boost::asio::ip::tcp::acceptor acceptor_(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(),
@@ -137,11 +138,9 @@ int main() {
         //waitKey(0);
         blocks.push_back(result);
     }
-
     /*
      * REBUILD
      */
-
     cv::utils::fs::createDirectory("Result");
     for (int j = 0; j < blocks.size(); j++)
     {

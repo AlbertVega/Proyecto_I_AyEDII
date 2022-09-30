@@ -82,7 +82,7 @@ void load( cv::Mat & mat, const char * data_str )
 /*
  * image divider
  */
-int divideImage(const cv::Mat& img, const int blockWidth, const int blockHeight, std::vector<cv::Mat>& blocks)
+int divideImage(const cv::Mat& img, const int blockWidth, std::vector<cv::Mat>& blocks)
 {
     // Checking if the image was passed correctly
     if (!img.data || img.empty())
@@ -98,29 +98,25 @@ int divideImage(const cv::Mat& img, const int blockWidth, const int blockHeight,
 
     // init block dimensions
     int bwSize;
-    int bhSize;
+    int bhSize = img.rows;
 
     int y0 = 0;
-    while (y0 < imgHeight)
+    int x0 = 0;
+    while (x0 < imgWidth)
     {
         // compute the block height
-        bhSize = ((y0 + blockHeight) > imgHeight) * (blockHeight - (y0 + blockHeight - imgHeight)) + ((y0 + blockHeight) <= imgHeight) * blockHeight;
 
-        int x0 = 0;
-        while (x0 < imgWidth)
-        {
-            // compute the block witdh
-            bwSize = ((x0 + blockWidth) > imgWidth) * (blockWidth - (x0 + blockWidth - imgWidth)) + ((x0 + blockWidth) <= imgWidth) * blockWidth;
+        // compute the block witdh
+        bwSize = ((x0 + blockWidth) > imgWidth) * (blockWidth - (x0 + blockWidth - imgWidth)) + ((x0 + blockWidth) <= imgWidth) * blockWidth;
 
-            // crop block
-            blocks.push_back(img(cv::Rect(x0, y0, bwSize, bhSize)).clone());
+        // crop block
+        blocks.push_back(img(cv::Rect(x0, y0, bwSize, bhSize)).clone());
 
-            // update x-coordinate
-            x0 = x0 + blockWidth;
-        }
+        // update x-coordinate
+        x0 = x0 + blockWidth;
 
         // update y-coordinate
-        y0 = y0 + blockHeight;
+        //y0 = y0 + blockHeight;
     }
     return EXIT_SUCCESS;
 }
@@ -162,9 +158,8 @@ int main() {
      */
     // init vars
     const int blockw = 128;
-    const int blockh = 128;
     std::vector<cv::Mat> blocks;
-    int divideStatus = divideImage(image, blockw, blockh, blocks);
+    int divideStatus = divideImage(image, blockw, blocks);
     // debug: save blocks
     /*
     cv::utils::fs::createDirectory("blocksFolder");
@@ -191,7 +186,7 @@ int main() {
     receivedMessage.pop_back();
     cout << "Server dice que: "<<receivedMessage<<endl;
 
-    for (int i = 0; i < blocks.size(); i++){
+    for (int i = 0; i < blocks.size() ; i++){
         cv::Mat TEMP = blocks[i];
         std::string serialized = save(TEMP);
         SendMessage(socket, serialized); // Escribe mensaje al servidor
