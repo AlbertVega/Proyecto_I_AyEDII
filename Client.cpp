@@ -175,22 +175,92 @@ int main() {
     cout << "Conectado al servidor" << endl;
     string size = to_string(blocks.size());
     /*
-     * receive the size of vector blocks
+     * send the size of vector blocks
      */
     SendMessage(socket, size);
     string receivedMessage = ReadMessage(socket);
     receivedMessage.pop_back();
     cout << "Server dice que: "<<receivedMessage<<endl;
+
     /*
-     * receive the image and add it to the Mat vector
+     * send the image source
      */
     for (int i = 0; i < blocks.size() ; i++){
         cv::Mat TEMP = blocks[i];
         std::string serialized = save(TEMP);
         SendMessage(socket, serialized);
         string receivedStatus = ReadMessage(socket);
-        receivedMessage.pop_back();
+        receivedStatus.pop_back();
         cout << "Server dice: "<<receivedStatus<<endl;
     }
+
+    /*
+     * receiving GammaApplied
+     */
+    vector<Mat>GammaBlocks;
+    for (int i = 0; i < blocks.size(); i++) {
+        string message = ReadMessage(socket); // Lee y declara mensaje del cliente
+        SendMessage(socket, "Pedazo " + to_string(i) + " de Gamma recibido");
+        message.pop_back();
+        Mat result;
+        load(result, message.c_str());
+        GammaBlocks.push_back(result);
+    }
+    Mat ResultGammaApplied;
+    hconcat(GammaBlocks, ResultGammaApplied);
+    imshow("Image with Gamma applyied", ResultGammaApplied);
+    waitKey(0);
+
+    /*
+     * receiving GrayApplied
+     */
+    vector<Mat>GrayBlocks;
+    for (int i = 0; i < blocks.size(); i++) {
+        string message = ReadMessage(socket); // Lee y declara mensaje del cliente
+        SendMessage(socket, "Pedazo " + to_string(i) + " de Gray recibido");
+        message.pop_back();
+        Mat result;
+        load(result, message.c_str());
+        GrayBlocks.push_back(result);
+    }
+    Mat ResultGrayApplyied;
+    hconcat(GrayBlocks, ResultGrayApplyied);
+    imshow("Image with Gamma applyied", ResultGrayApplyied);
+    waitKey(0);
+
+    /*
+     * receiving BlurApplied
+     */
+    vector<Mat>BlurBlocks;
+    for (int i = 0; i < blocks.size(); i++) {
+        string message = ReadMessage(socket); // Lee y declara mensaje del cliente
+        SendMessage(socket, "Pedazo " + to_string(i) + " de Blur recibido");
+        message.pop_back();
+        Mat result;
+        load(result, message.c_str());
+        BlurBlocks.push_back(result);
+    }
+    Mat ResultBlurApplyied;
+    hconcat(BlurBlocks, ResultBlurApplyied);
+    imshow("Image with Gamma applyied", ResultBlurApplyied);
+    waitKey(0);
+
+    /*
+     * receiving BrightApplied
+     */
+    vector<Mat>BrightBlocks;
+    for (int i = 0; i < blocks.size(); i++) {
+        string message = ReadMessage(socket); // Lee y declara mensaje del cliente
+        SendMessage(socket, "Pedazo " + to_string(i) + " de Bright recibido");
+        message.pop_back();
+        Mat result;
+        load(result, message.c_str());
+        BrightBlocks.push_back(result);
+    }
+    Mat ResultBrightApplyied;
+    hconcat(BrightBlocks, ResultBrightApplyied);
+    imshow("Image with Gamma applyied", ResultBrightApplyied);
+    waitKey(0);
+
     return 0;
 }
