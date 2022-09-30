@@ -41,7 +41,6 @@ namespace boost {
                 ar & m.data[ i ];
         }
 
-
         template <class Archive>
         void load( Archive & ar, cv::Mat& m, const unsigned int version )
         {
@@ -150,7 +149,7 @@ int main() {
     /*
      * Image management
      */
-    cv::Mat image = imread("/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/Prueba.jpeg", IMREAD_COLOR);
+    cv::Mat image = imread("/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/src/Prueba.jpeg", IMREAD_COLOR);
     if (image.empty()) { //Verify if the image has been readed correctly
         cout << "Image File "
              << "Not Found" << endl;
@@ -208,7 +207,7 @@ int main() {
     }
     Mat ResultGammaApplied;
     hconcat(GammaBlocks, ResultGammaApplied);
-    imshow("Image with Gamma applyied", ResultGammaApplied);
+    imshow("Image with Gamma_correction applied", ResultGammaApplied);
     waitKey(0);
 
     /*
@@ -225,7 +224,7 @@ int main() {
     }
     Mat ResultGrayApplyied;
     hconcat(GrayBlocks, ResultGrayApplyied);
-    imshow("Image with Gamma applyied", ResultGrayApplyied);
+    imshow("Image with Gray_scale applied", ResultGrayApplyied);
     waitKey(0);
 
     /*
@@ -242,7 +241,7 @@ int main() {
     }
     Mat ResultBlurApplyied;
     hconcat(BlurBlocks, ResultBlurApplyied);
-    imshow("Image with Gamma applyied", ResultBlurApplyied);
+    imshow("Image with gaussian_blur applyied", ResultBlurApplyied);
     waitKey(0);
 
     /*
@@ -259,7 +258,7 @@ int main() {
     }
     Mat ResultBrightApplyied;
     hconcat(BrightBlocks, ResultBrightApplyied);
-    imshow("Image with Gamma applyied", ResultBrightApplyied);
+    imshow("Image with bright_control applyied", ResultBrightApplyied);
     waitKey(0);
 
     return 0;

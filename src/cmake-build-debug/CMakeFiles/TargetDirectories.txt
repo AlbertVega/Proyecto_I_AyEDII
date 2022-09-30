@@ -1,0 +1,4 @@
+/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/src/cmake-build-debug/CMakeFiles/Server.dir
+/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/src/cmake-build-debug/CMakeFiles/Client.dir
+/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/albert/Documentos/GitHub/Proyecto_I_AyEDII/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir

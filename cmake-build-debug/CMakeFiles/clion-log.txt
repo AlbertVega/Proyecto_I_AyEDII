@@ -1,6 +1,1 @@
-/snap/clion/206/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/206/bin/ninja/linux/ninja -G Ninja -S /home/albert/Documentos/GitHub/Proyecto_I_AyEDII -B /home/albert/Documentos/GitHub/Proyecto_I_AyEDII/cmake-build-debug
--- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.70.0") found components: system filesystem 
--- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.70.0") found components: system filesystem serialization 
--- Configuring done
--- Generating done
--- Build files have been written to: /home/albert/Documentos/GitHub/Proyecto_I_AyEDII/cmake-build-debug
+CMakeLists.txt not found in /home/albert/Documentos/GitHub/Proyecto_I_AyEDII Select CMakeLists.txt

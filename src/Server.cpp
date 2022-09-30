@@ -32,7 +32,7 @@ class ImageProcessing{
         Mat *destiny;
     public:
         ImageProcessing(int, int, int, float, Mat*, Mat*); //constructor
-        int glaussian_blur();
+        int gaussian_blur();
         int gray_scale();
         int bright_control();
         int gamma_correction();
@@ -46,7 +46,7 @@ ImageProcessing::ImageProcessing(int _witdh, int _height, int _delta_bright, flo
     source = _source;
     destiny = _destiny;
 }
-int ImageProcessing::glaussian_blur() {
+int ImageProcessing::gaussian_blur() {
     if (source->empty()){
         return -1;
     }else{
@@ -253,11 +253,11 @@ int main() {
      * Applying filters
      */
     Mat GammaApplyed;
-    ImageProcessing ImageGamma = ImageProcessing(Result.cols, Result.rows,100,3.0, &Result, &GammaApplyed);
+    ImageProcessing ImageGamma = ImageProcessing(Result.cols, Result.rows,75,3.0, &Result, &GammaApplyed);
     ImageGamma.gamma_correction();
     Mat BlurApplyed;
     ImageProcessing ImageBlur = ImageProcessing(Result.cols, Result.rows,100,3.0, &Result, &BlurApplyed);
-    ImageBlur.glaussian_blur();
+    ImageBlur.gaussian_blur();
     Mat BrightApplyed;
     ImageProcessing ImageBright = ImageProcessing(Result.cols, Result.rows,100,3.0, &Result, &BrightApplyed);
     ImageBright.bright_control();
