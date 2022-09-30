@@ -23,73 +23,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5ae88c1b-7997-4d4d-8bc6-c986cab81e31" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#0.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#0.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#1.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#10.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#11.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#12.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#13.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#14.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#15.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#16.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#17.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#18.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#19.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#2.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#2.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#20.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#21.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#22.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#23.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#24.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#25.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#26.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#27.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#28.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#29.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#3.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#3.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#4.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#4.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#5.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Result/block#5.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#7.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#8.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Result/block#9.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#0.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#10.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#11.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#12.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#13.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#14.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#15.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#16.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#17.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#18.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#19.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#20.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#21.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#22.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#23.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#24.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#25.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#26.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#27.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#28.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#29.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#4.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#7.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#8.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocksFolder/block#9.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Client.dir/Client.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Client.dir/Client.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Server.dir/Server.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Server.dir/Server.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Client" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Client" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Server" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Server" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
@@ -195,7 +132,7 @@
       <workItem from="1664505871823" duration="1025000" />
       <workItem from="1664507045234" duration="1864000" />
       <workItem from="1664508924554" duration="3613000" />
-      <workItem from="1664513064937" duration="2005000" />
+      <workItem from="1664513064937" duration="3726000" />
     </task>
     <servers />
   </component>

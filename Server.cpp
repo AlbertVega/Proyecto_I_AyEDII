@@ -138,6 +138,13 @@ int main() {
         //waitKey(0);
         blocks.push_back(result);
     }
+    cout<<"Hola!";
+    Mat Result;
+
+    hconcat(blocks, Result);
+    imshow("Result window", Result);
+    waitKey(0);
+
     /*
      * REBUILD
      */
